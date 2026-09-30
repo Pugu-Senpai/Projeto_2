@@ -1,0 +1,126 @@
+:root {
+  /* base */
+  --creme-papel: #F4E7C3;
+  --creme-claro: #F8EDD1;
+  --areia: #CDC3A8;
+  --tinta-preta: #1F1D19;
+  --carvao: #393730;
+  --asfalto: #52544B;
+  --pedra: #85877A;
+
+  /* destaque */
+  --vermelho: #CC513B;
+  --vermelho-escuro: #8E2C25;
+  --verde: #829670;
+  --verde-escuro: #5E7050;
+  --verde-claro: #A2A587;
+  --mostarda: #D4A23A;
+
+  /* por tipo de carta */
+  --carta-ajuda: var(--verde);
+  --carta-ataque: var(--vermelho);
+  --carta-evento: var(--mostarda);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background-color: var(--creme-papel);
+    color: var(--tinta-preta);
+    min-height: 100vh;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h2 {
+  font-family: "Kaushan Script";
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* Elementos escondidos mas acessiveis */
+.visualmente-oculto {
+    border: 0;
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+}
+
+/* SEÇÃO MENU INICIAL */
+#ecra-inicial {
+    background-image: url(../assets/img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+}
+
+.inicial-nav-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+.fundo-jogo {
+    background-image: url(../assets/img/fundo_jogo.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.inicial-botao {
+    border-width: 0.3rem;
+    border-style: solid;
+    border-radius: 1rem;
+    border-color: var(--tinta-preta);
+    background-color: var(--vermelho);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--tinta-preta);
+    padding: 0.25rem 1rem;
+    font-family: inherit;
+    min-width: 15%;
+}
+
+.inicial-botao:hover {
+    background-color: var(--vermelho-escuro);
+    border-color: var(--areia);
+    color: var(--creme-claro);
+    cursor: pointer;
+}
+
+.inicial-botao:focus-visible {
+    background-color: var(--vermelho-escuro);
+    border-color: var(--areia);
+    color: var(--creme-claro);
+    outline-offset: 0.1rem;
+    outline-color: var(--vermelho);      
+}
