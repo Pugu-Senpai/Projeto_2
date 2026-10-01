@@ -48,7 +48,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Kaushan Script";
+  font-family: "Kaushan Script", cursive;
   font-weight: 400;
   font-style: normal;
 }
@@ -79,9 +79,6 @@ h2 {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     gap: 2rem;
     padding-bottom: 2.5rem;
 }
@@ -94,6 +91,7 @@ h2 {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 }
 
 .inicial-botao {
@@ -117,10 +115,16 @@ h2 {
     cursor: pointer;
 }
 
+.inicial-botao:active {
+    transform: scale(0.975)
+}
+
 .inicial-botao:focus-visible {
     background-color: var(--vermelho-escuro);
     border-color: var(--areia);
     color: var(--creme-claro);
     outline-offset: 0.1rem;
-    outline-color: var(--vermelho);      
+    outline-color: var(--mostarda);
+    outline-width: 0.3rem; 
+    outline-style: groove;     
 }
