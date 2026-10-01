@@ -12,9 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section id="ecra-inicial">
+    <!-- ECRÃ INICIAL -->
+    <section id="ecra-inicial" class="ecra">
         <div class="fundo-jogo">
             <h1 class="visualmente-oculto">Jogo: Moto Grande Corrida '60</h1>
+            <img class="barra-titulo" src="./assets/img/titulo_jogo.png" alt="">
             <nav class="inicial-nav-conteudo" aria-label="Menu Iniciar">
                 <button id="btn-iniciar-jogo" type="button" class="inicial-botao">
                     Iniciar Jogo
@@ -25,16 +27,40 @@
                 <button data-janela="regras" type="button" class="inicial-botao">
                     Regras
                 </button>
+                <button data-janela="opcoes" type="button" class="inicial-botao">
+                    Opções
+                </button>
             </nav>
         </div>
     </section>
 
-    <section id="ecra-configuracao" hidden>
-
+    <!-- ECRÃ CONFIGURAÇÕES -->
+    <section id="ecra-configuracao" class="ecra" hidden>
+        <h2>TESTE ECRÃ CONFIGURAÇÃO</h2>
     </section>
 
-    <div id="ecra-jogo" hidden>
+    <!-- ECRÃ JOGO -->
+    <div id="ecra-jogo" class="ecra" hidden>
 
     </div>
+
+    <dialog id="classificacao">
+        <h2>TBD - CLASSIFICAÇÃO</h2>
+        <form method="dialog">
+            <button type="submit" class="btn-fechar">Fechar</button>
+        </form>    
+    </dialog>
+    <dialog id="regras">
+        <h2>TBD - REGRAS</h2>
+        <form method="dialog">
+            <button type="submit" class="btn-fechar">Fechar</button>
+        </form>   
+    </dialog>
+    <dialog id="opcoes">
+        <h2>TBD - OPÇÕES</h2>
+        <form method="dialog">
+            <button type="submit" class="btn-fechar">Fechar</button>
+        </form>
+    </dialog>
 </body>
 </html>
