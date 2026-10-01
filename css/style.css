@@ -74,15 +74,6 @@ h2 {
     background-size: cover; 
 }
 
-.inicial-nav-conteudo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding-bottom: 2.5rem;
-}
-
 .fundo-jogo {
     background-image: url(../assets/img/fundo_jogo.jpg);
     background-repeat: no-repeat;
@@ -91,7 +82,22 @@ h2 {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.barra-titulo {
+    align-self: center;
+    width: 80%;
+    margin-top: 2rem;
+}
+
+.inicial-nav-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .inicial-botao {
@@ -116,7 +122,7 @@ h2 {
 }
 
 .inicial-botao:active {
-    transform: scale(0.975)
+    transform: scale(0.975);
 }
 
 .inicial-botao:focus-visible {
