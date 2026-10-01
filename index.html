@@ -36,7 +36,31 @@
 
     <!-- ECRÃ CONFIGURAÇÕES -->
     <section id="ecra-configuracao" class="ecra" hidden>
-        <h2>TESTE ECRÃ CONFIGURAÇÃO</h2>
+        <h2>Configuração do Jogo</h2>
+        <form id="dados-jogador" novalidate>
+            <fieldset>
+                <legend>Escolha o número de jogadores</legend>
+
+                <input type="radio" id="num-2" name="num-jogadores" value="2" checked>
+                <label for="num-2">2</label>
+                <input type="radio" id="num-3" name="num-jogadores" value="3">
+                <label for="num-3">3</label>
+                <input type="radio" id="num-4" name="num-jogadores" value="4">
+                <label for="num-4">4</label>
+                <input type="radio" id="num-5" name="num-jogadores" value="5">
+                <label for="num-5">5</label>
+                <input type="radio" id="num-6" name="num-jogadores" value="6">
+                <label for="num-6">6</label>
+            </fieldset>
+            <div id="lista-jogadores">
+
+            </div>
+            <p id="erro-formulario" role="alert">
+
+            </p>
+            <button type="submit">Começar Corrida</button>
+            <button id="btn-voltar" type="button">Voltar</button>
+        </form>
     </section>
 
     <!-- ECRÃ JOGO -->
