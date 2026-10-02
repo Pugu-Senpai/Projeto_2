@@ -1,0 +1,10 @@
+{
+    "motas": [
+        {"numero": 1, "nome": "Itália", "cor": "#C1272D", "placa": "#FFFFFF", "corNumero": "#000000"},
+        {"numero": 2, "nome": "Reino Unido", "cor": "#1F5E3B", "placa": "#E8B21C", "corNumero": "#000000"},
+        {"numero": 3, "nome": "França", "cor": "#1D4E89", "placa": "#FFFFFF", "corNumero": "#000000"},
+        {"numero": 4, "nome": "Portugal", "cor": "#F2EFE6", "placa": "#C1272D", "corNumero": "#FFFFFF"},
+        {"numero": 5, "nome": "Bélgica", "cor": "#E8B21C", "placa": "#000000", "corNumero": "#FFFFFF"},
+        {"numero": 6, "nome": "Países Baixos", "cor": "#E36414", "placa": "#FFFFFF", "corNumero": "#000000"}
+    ]
+}

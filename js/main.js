@@ -1,29 +1,48 @@
 import { trocarEcras } from "./ecras.js";
 import { abrirJanela } from "./janelas.js";
-import { criarListaJogadores } from "./configuracao.js";
+import { criarListaJogadores, lerJogadores, validarJogadores } from "./configuracao.js";
+import { carregarDados } from "./dados.js";
+
+const dados = await carregarDados();
+console.log(dados);
 
 const btnIniciar = document.getElementById("btn-iniciar-jogo");
+const btnsJanela = document.querySelectorAll("[data-janela]");
+const btnVoltar = document.getElementById("btn-voltar");
+const radioJogadores = document.querySelectorAll('input[name="num-jogadores"]');
+const paragrafoErro = document.getElementById("erro-formulario");
+const formulario = document.getElementById("dados-jogador");
+
+
 btnIniciar.addEventListener("click", () => {
     trocarEcras("ecra-configuracao");
     const radioSelecionado = document.querySelector('input[name="num-jogadores"]:checked');
-    criarListaJogadores(Number(radioSelecionado.value));
+    criarListaJogadores(Number(radioSelecionado.value), dados.motas);
 });
 
-const btnsJanela = document.querySelectorAll("[data-janela]");
 btnsJanela.forEach((b) => {
     b.addEventListener("click", () => {
         abrirJanela(b.dataset.janela);
     });
 });
 
-const btnVoltar = document.getElementById("btn-voltar");
 btnVoltar.addEventListener("click", () => {
     trocarEcras("ecra-inicial");
 });
 
-const radioJogadores = document.querySelectorAll('input[name="num-jogadores"]');
 radioJogadores.forEach((n) => {
     n.addEventListener("change", () => {
-        criarListaJogadores(Number(n.value));
+        criarListaJogadores(Number(n.value), dados.motas);
     });
+});
+
+formulario.addEventListener("submit", (evento) => {
+    evento.preventDefault();
+    const jogadores = lerJogadores();
+    const erro = validarJogadores(jogadores);
+    paragrafoErro.textContent = erro;
+    if (erro) {
+        return;
+    }
+    trocarEcras("ecra-jogo");
 });
