@@ -2,6 +2,7 @@ import { trocarEcras } from "./ecras.js";
 import { abrirJanela } from "./janelas.js";
 import { criarListaJogadores, lerJogadores, validarJogadores } from "./configuracao.js";
 import { carregarDados } from "./dados.js";
+import { iniciarCorrida, obterPilotos } from "./jogo.js";
 
 const dados = await carregarDados();
 console.log(dados);
@@ -44,5 +45,7 @@ formulario.addEventListener("submit", (evento) => {
     if (erro) {
         return;
     }
+    iniciarCorrida(jogadores, dados.motas);
+    console.log(obterPilotos());
     trocarEcras("ecra-jogo");
 });

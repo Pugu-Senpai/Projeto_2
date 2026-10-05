@@ -60,5 +60,15 @@ export function validarJogadores(jogadores) {
         const numJogadores = jogadoresSemNome.map((j) => j.numero);
         return `Falta o nome dos jogadores: ${numJogadores.join(", ")}`;
     }
+    const nomeJogadores = jogadores.map((j) => j.nome.toLowerCase());
+    const semNomesRepetidos = new Set(nomeJogadores);
+    if (semNomesRepetidos.size < nomeJogadores.length) {
+        return "Há Jogadores com o mesmo nome";
+    }
+    const motasJogadores = jogadores.map((j) => j.mota);
+    const semMotasRepetidas = new Set(motasJogadores);
+    if (semMotasRepetidas.size < motasJogadores.length) {
+        return "Há jogadores com a mesma mota";
+    }
     return "";
 }
