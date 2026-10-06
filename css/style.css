@@ -41,6 +41,8 @@ body {
     font-style: normal;
 }
 
+[hidden] {display: none !important;}
+
 h1 {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
@@ -133,4 +135,66 @@ h2 {
     outline-color: var(--mostarda);
     outline-width: 0.3rem; 
     outline-style: groove;     
+}
+
+#ecra-jogo {
+    display: grid;
+    grid-template-columns: 1fr 15rem;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "topo topo"
+        "pista menu";
+    min-height: 100vh;
+}
+
+#ecra-jogo > header {grid-area: topo; }
+#ecra-jogo > main {grid-area: pista; }
+#ecra-jogo > aside {grid-area: menu; }
+
+#pista {
+    position: relative;
+    max-width: 70%;
+    aspect-ratio: 740 / 510;
+    margin-inline: auto;
+    background-color: var(--verde);
+}
+
+.casa {
+    position: absolute;
+    width: 7%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 1.5rem;
+    display: grid;
+    place-items: center;
+}
+
+.casa-branco{
+    background-color: var(--asfalto);
+    color: var(--creme-papel);
+}
+
+.casa-curva {
+    background-color: var(--vermelho);
+}
+
+.casa-evento {
+    background-color: var(--mostarda);
+}
+
+.casa-meta {
+    background-color: var(--creme-claro);
+}
+
+.peca {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 2.5%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
 }
