@@ -17,3 +17,11 @@ export function iniciarCorrida(jogadores, motas) {
 export function obterPilotos() {
     return listaPilotos;
 }
+
+export function obterPilotoDaVez() {
+    return listaPilotos[turno];
+}
+
+export function passarTurno() {
+    turno = (turno + 1) % listaPilotos.length;
+}
