@@ -2,15 +2,14 @@ import { trocarEcras } from "./ecras.js";
 import { abrirJanela } from "./janelas.js";
 import { criarListaJogadores, lerJogadores, validarJogadores } from "./configuracao.js";
 import { carregarDados } from "./dados.js";
-import { iniciarCorrida, obterPilotos, obterPilotoDaVez, passarTurno, avancarPilotoDaVez, TOTAL_VOLTAS, pilotoDaVezVenceu } from "./jogo.js";
+import { iniciarCorrida, obterPilotos, obterPilotoDaVez, passarTurno, avancarPilotoDaVez, TOTAL_VOLTAS, pilotoDaVezVenceu, obterEstado, restaurarCorrida } from "./jogo.js";
 import { desenharPista, desenharPecas } from "./pista.js";
 import { lancarDado, esperar } from "./utils.js";
 import { desenharPosicoes } from "./painel.js";
-import { lerVitorias, guardarVitorias } from "./armazenamento.js";
+import { lerVitorias, guardarVitorias, lerCorrida, guardarCorrida, apagarCorrida } from "./armazenamento.js";
 import { desenharClassificacao } from "./classificacao.js";
 
 const dados = await carregarDados();
-console.log(dados);
 
 const btnIniciar = document.getElementById("btn-iniciar-jogo");
 const btnsJanela = document.querySelectorAll("[data-janela]");
@@ -31,6 +30,17 @@ function mostrarVez() {
 
 function mostrarVolta() {
     textoVolta.textContent = `Volta ${obterPilotoDaVez().volta} de ${TOTAL_VOLTAS}`;
+}
+
+function mostrarCorrida() {
+    btnDado.disabled = false;
+    numDado.textContent = "";
+    mostrarVez();
+    mostrarVolta();
+    desenharPista(dados.casas);
+    desenharPecas(obterPilotos(), dados.casas);
+    desenharPosicoes(obterPilotos(), dados.casas.length); 
+    trocarEcras("ecra-jogo");   
 }
 
 btnIniciar.addEventListener("click", () => {
@@ -67,15 +77,8 @@ formulario.addEventListener("submit", (evento) => {
         return;
     }
     iniciarCorrida(jogadores, dados.motas);
-    btnDado.disabled = false;
-    numDado.textContent = "";
-    mostrarVez();
-    mostrarVolta();
-    desenharPista(dados.casas);
-    desenharPecas(obterPilotos(), dados.casas);
-    desenharPosicoes(obterPilotos(), dados.casas.length); 
-    console.log(obterPilotos());
-    trocarEcras("ecra-jogo");
+    guardarCorrida(obterEstado());
+    mostrarCorrida();
 });
 
 btnDado.addEventListener("click", async () => {
@@ -88,7 +91,7 @@ btnDado.addEventListener("click", async () => {
         if (pilotoDaVezVenceu()) {
             break;
         }
-        await esperar(100);
+        await esperar(300);
     }   
     desenharPosicoes(obterPilotos(), dados.casas.length);
     if (pilotoDaVezVenceu()) {
@@ -100,10 +103,12 @@ btnDado.addEventListener("click", async () => {
             data: new Date().toLocaleDateString("pt-PT"),
         };
         guardarVitorias(infoVitoria);
+        apagarCorrida();
         abrirJanela("vitoria");
         return;
     } 
     passarTurno();
+    guardarCorrida(obterEstado());
     mostrarVez();
     mostrarVolta();
     btnDado.disabled = false;
@@ -112,3 +117,9 @@ btnDado.addEventListener("click", async () => {
 janelaVitoria.addEventListener("close", () => {
     trocarEcras("ecra-inicial");
 });
+
+const corridaGuardada = lerCorrida();
+if (corridaGuardada) {
+    restaurarCorrida(corridaGuardada);
+    mostrarCorrida();
+}

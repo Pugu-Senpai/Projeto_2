@@ -1,6 +1,6 @@
 let listaPilotos = [];
 let turno = 0;
-export const TOTAL_VOLTAS = 1;
+export const TOTAL_VOLTAS = 3;
 
 function criarPilotos(jogadores, motas) {
     const pilotos = jogadores.map((j) => {
@@ -40,4 +40,13 @@ export function avancarPilotoDaVez(totalCasas) {
 
 export function pilotoDaVezVenceu() {
     return obterPilotoDaVez().volta > TOTAL_VOLTAS;
+}
+
+export function obterEstado() {
+    return { pilotos: listaPilotos, turno: turno };
+}
+
+export function restaurarCorrida(estado) {
+    listaPilotos = estado.pilotos;
+    turno = estado.turno;
 }
