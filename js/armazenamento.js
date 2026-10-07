@@ -30,3 +30,7 @@ export function guardarCorrida(estado) {
 export function apagarCorrida() {
     sessionStorage.removeItem(CHAVE_CORRIDA);
 }
+
+export function apagarVitorias() {
+    localStorage.removeItem(CHAVE_VITORIA);
+}
