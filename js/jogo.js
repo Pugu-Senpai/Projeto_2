@@ -5,7 +5,7 @@ export const TOTAL_VOLTAS = 3;
 function criarPilotos(jogadores, motas) {
     const pilotos = jogadores.map((j) => {
         const mota = motas.find((m) => m.numero === j.mota);
-        return {...j, posicao: 0, volta: 1, cor: mota.cor};
+        return {...j, posicao: 0, volta: 1, cor: mota.cor, placa: mota.placa, corNumero: mota.corNumero};
 });
     return pilotos;
 }

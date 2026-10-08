@@ -64,7 +64,7 @@ h3 {
 
 
 /* Elementos escondidos mas acessiveis */
-.visualmente-oculto {
+.visualmente-oculto, #ecra-configuracao input[type="radio"] {
     border: 0;
     clip-path: inset(50%);
     height: 1px;
@@ -84,7 +84,7 @@ h3 {
     background-size: cover; 
 }
 
-/* SEÇÃO MENU INICIAL */
+/* SECÇÃO MENU INICIAL */
 
 .fundo-jogo {
     background-image: url(../assets/img/fundo_jogo.jpg);
@@ -141,14 +141,14 @@ h3 {
 .inicial-botao:focus-visible {
     background-color: var(--vermelho-escuro);
     border-color: var(--areia);
-    color: var(--creme-claro);
-    outline-offset: 0.1rem;
-    outline-color: var(--mostarda);
-    outline-width: 0.3rem; 
-    outline-style: groove;     
+    color: var(--creme-claro);    
 }
 
-/* SEÇÃO ECRÃ JOGO */
+/* SECÇÃO ECRÃ JOGO */
+.aviso-rodar {
+    display: none;
+}
+
 #ecra-jogo {
     display: grid;
     grid-template-columns: 1fr 15rem;
@@ -156,20 +156,30 @@ h3 {
     grid-template-areas:
         "topo topo"
         "pista menu";
-    min-height: 100vh;
+    height: 100vh;
 }
 
 #ecra-jogo > header {grid-area: topo; }
 #ecra-jogo > main {grid-area: pista; }
 #ecra-jogo > aside {grid-area: menu; }
 
+#ecra-jogo > main {
+    padding: 1rem;
+    display: grid;
+    place-items: center;
+    container-type: size;
+}
+
 /* PISTA */
 #pista {
     position: relative;
-    max-width: 70%;
+    width: min(100cqw, 100cqh * 740 / 510);
     aspect-ratio: 740 / 510;
-    margin-inline: auto;
     background-color: var(--verde);
+    border-style: solid;
+    border-width: 5px;
+    border-color: var(--carvao);
+    border-radius: 1rem;
 }
 
 /* CASAS */
@@ -178,9 +188,13 @@ h3 {
     width: 7%;
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
-    border-radius: 1.5rem;
     display: grid;
     place-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--carvao);
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 4px rgb(31 29 25 / 0.4);
 }
 
 .casa-branco{
@@ -196,15 +210,18 @@ h3 {
     background-color: var(--mostarda);
 }
 
-.casa-meta {
-    background-color: var(--creme-claro);
+.casa-meta { 
+    width: 10%;
+    height: 12%;
+    background: repeating-conic-gradient(var(--tinta-preta) 0 25%, var(--creme-claro) 0 50%) 0 0 / 50% 50%;
+    color: transparent;
 }
 
 /* PEÇAS */
 .peca {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 2.5%;
+    width: 3.25%;
     aspect-ratio: 1;
     border-radius: 50%;
     border-style: solid;
@@ -212,6 +229,85 @@ h3 {
     display: grid;
     place-items: center;
     font-size: 0.8rem;
+}
+
+/* CABEÇALHO */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--carvao);
+    color: var(--creme-claro);
+}
+
+header h2 {
+    margin: 0;
+    color: var(--vermelho);
+}
+
+#vez-jogador, #volta {
+    background-color: var(--creme-papel);
+    color: var(--tinta-preta);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+/* ASIDE */
+aside {
+    background-color: var(--creme-claro);
+    border-left: 0.2rem solid var(--carvao);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto
+}
+
+aside > section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* DADO */
+#numero-dado {
+    display: grid;
+    place-items: center;
+    width: 6rem;
+    aspect-ratio: 1;
+    margin-inline: auto;
+    border-style: solid;
+    border-width: 5px;
+    border-color: var(--carvao);
+    border-radius: 1rem;
+    background-color: var(--creme-papel);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#btn-dado {
+    width: 100%;
+}
+
+#mensagem {
+    min-height: 3rem;
+    text-align: center;
+}
+
+#lista-posicoes, #lista-classificacao, #texto-vitoria {
+    overflow-wrap: anywhere;    
+}
+
+#lista-posicoes li:first-child {
+    font-weight: bold;
+    color: var(--vermelho-escuro);
 }
 
 /* JANELAS & BOTÕES */
@@ -313,11 +409,15 @@ dialog form {
 .botao:focus-visible:not(:disabled) {
     background-color: var(--vermelho-escuro);
     border-color: var(--areia);
-    color: var(--creme-claro);
-    outline-offset: 0.1rem;
+    color: var(--creme-claro);    
+}
+
+.botao:focus-visible, .inicial-botao:focus-visible, input:focus-visible, 
+select:focus-visible, input[type="radio"]:focus-visible + label {
+    outline-offset: 1.5px;
     outline-color: var(--mostarda);
-    outline-width: 0.3rem; 
-    outline-style: groove;     
+    outline-width: 0.2rem; 
+    outline-style: solid;    
 }
 
 /* SEÇÃO ECRÃ CONFIGURAÇÃO */
@@ -346,5 +446,135 @@ dialog form {
     justify-content: center;
     margin-inline: auto;
     padding: 1rem 1rem;
-    gap: 1rem
+    gap: 1rem;
+}
+
+/* SELETOR NUMERO JOGADORES */
+#ecra-configuracao input[type="radio"] + label {
+    border: none;
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-family: inherit;
+    min-width: 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+#ecra-configuracao input[type="radio"]:checked + label {
+    background-color: var(--vermelho);
+    color: var(--creme-claro);
+}
+
+#ecra-configuracao input[type="radio"]:not(:checked) + label:hover { 
+    background-color: var(--vermelho-escuro);
+    color: var(--creme-claro);
+}
+
+#ecra-configuracao input[type="radio"]:focus-visible + label {
+    background-color: var(--vermelho-escuro);
+    color: var(--creme-claro);    
+}
+
+#ecra-configuracao input[type="radio"] + label:active {
+    transform: scale(0.95);    
+}
+
+/* INPUT DADOS DOS JOGADORES */
+#dados-jogador > fieldset {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--areia);
+    border-radius: 1rem;
+}
+
+#dados-jogador legend {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.2rem;
+    color: var(--vermelho-escuro);
+    padding: 0 0.5rem;
+}
+
+#lista-jogadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+}
+
+#lista-jogadores fieldset {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--areia);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+#lista-jogadores input, #lista-jogadores select {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.3rem 0.6rem;
+    border-style: solid;
+    border-radius: 1rem;
+    border-color: var(--areia);
+    background-color: var(--creme-papel);
+}
+
+#erro-formulario {
+    background-color: var(--vermelho-escuro);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--creme-claro);
+    border-radius: 1rem;
+    padding: 5px;
+}
+
+#erro-formulario:empty {
+    display: none;
+}
+
+/* ANIMAÇÃO PULSE */
+.pulsar {
+    font-size: 8rem;
+    color: var(--creme-claro);
+    animation: piscar-cor 1s infinite alternate;
+}
+
+@keyframes piscar-cor {
+to { color: var(--vermelho); }
+}
+
+@media (orientation: portrait) and (max-width: 50rem) {
+    .aviso-rodar {
+        display: grid; 
+        place-content: center;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background-color: var(--tinta-preta);
+        color: var(--creme-claro);
+        font-size: clamp(2rem, 10vw, 4rem);
+        font-weight: bold;
+        text-align: center; 
+        text-transform: uppercase;
+        padding: 1.5rem;
+    }
+
+    .aviso-rodar p {
+        margin: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pulsar {
+        animation: none;
+    }
 }
