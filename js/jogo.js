@@ -50,3 +50,13 @@ export function restaurarCorrida(estado) {
     listaPilotos = estado.pilotos;
     turno = estado.turno;
 }
+
+export function recuarPilotoDaVez(casas) {
+    listaPilotos = listaPilotos.map((p, i) => {
+        if (i !== turno) {
+            return p;
+        }
+        const novaPosicao = p.posicao - casas;
+        return {...p, posicao: novaPosicao};
+    });    
+}
