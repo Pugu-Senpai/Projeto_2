@@ -11,6 +11,7 @@ function criarBlocoJogador(numero, motas) {
     labelNome.textContent = "Nome";
     const inputNome = document.createElement("input");
     inputNome.type = "text";
+    inputNome.maxLength = 10;
     inputNome.id = idInput;
     inputNome.name = idInput;
     labelNome.htmlFor = idInput;
@@ -59,6 +60,11 @@ export function validarJogadores(jogadores) {
     if (jogadoresSemNome.length > 0) {
         const numJogadores = jogadoresSemNome.map((j) => j.numero);
         return `Falta o nome dos jogadores: ${numJogadores.join(", ")}`;
+    }
+    const jogadoresComSimbolos = jogadores.filter((j) => j.nome.includes("<") || j.nome.includes(">"));
+    if (jogadoresComSimbolos.length > 0) {
+        const numJogadores = jogadoresComSimbolos.map((j) => j.numero);
+        return `Os nomes não podem ter os símbolos < ou >. Jogadores: ${numJogadores.join(", ")}`;
     }
     const nomeJogadores = jogadores.map((j) => j.nome.toLowerCase());
     const semNomesRepetidos = new Set(nomeJogadores);

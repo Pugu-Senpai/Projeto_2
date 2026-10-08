@@ -1,7 +1,7 @@
 const pista = document.getElementById("pista");
 const DESVIOS = [
-    [-2, -2.5], [0, -2.5], [2, -2.5],
-    [-2,  2.5], [0,  2.5], [2,  2.5]
+    [-3, -2.5], [0, -2.5], [3, -2.5],
+    [-3,  2.5], [0,  2.5], [3,  2.5]
 ];
 
 function classeDaCasa(tipo) {
@@ -44,6 +44,8 @@ export function desenharPecas(pilotos, casas) {
         peca.classList.add("peca");
         peca.textContent = `${piloto.numero}`;
         peca.style.backgroundColor = `${piloto.cor}`;
+        peca.style.borderColor = `${piloto.placa}`;
+        peca.style.color = `${piloto.corNumero}`;
         peca.style.left = `${casa.x + desvioX}%`;
         peca.style.top = `${casa.y + desvioY}%`;
         pista.append(peca);
