@@ -58,8 +58,8 @@
             <p id="erro-formulario" role="alert">
 
             </p>
-            <button type="submit">Começar Corrida</button>
-            <button id="btn-voltar" type="button">Voltar</button>
+            <button type="submit" class="botao">Começar Corrida</button>
+            <button id="btn-voltar" type="button" class="botao">Voltar</button>
         </form>
     </section>
 
@@ -73,7 +73,7 @@
             <div id="volta">
 
             </div>
-            <button id="btn-sair" type="button">Sair da Corrida</button>
+            <button id="btn-sair" type="button" class="botao">Sair da Corrida</button>
         </header>
         <main >
             <section id="pista">
@@ -85,7 +85,7 @@
                 <div id="numero-dado">
                     
                 </div>
-                <button id="btn-dado" type="button">
+                <button id="btn-dado" type="button" class="botao">
                     Lançar dado
                 </button>
                 <p id="mensagem" aria-live="polite">
@@ -100,102 +100,110 @@
     </div>
 
     <dialog id="classificacao">
-        <h2>CLASSIFICAÇÃO</h2>
-        <ol id="lista-classificacao">
-            
-        </ol>
-        <form method="dialog">
-            <button type="submit" class="btn-fechar">Fechar</button>
-        </form>    
+        <div class="janela-conteudo">
+            <h2>Classificação</h2>
+            <ol id="lista-classificacao">
+                
+            </ol>
+            <form method="dialog">
+                <button type="submit" class="btn-fechar botao">Fechar</button>
+            </form>  
+        </div>  
     </dialog>
     <dialog id="regras">
-        <h2>REGRAS</h2>
-        <h3>Objetivo:</h3>
-        <p>Jogo de 2 a 6 pilotos. Ganha quem cruzar primeiro a meta no fim da 3ª volta.</p>
-        <h3>O teu turno:</h3>
-        <ol>
-            <li>Lança o dado;</li>
-            <li>A tua mota avança esse número de casas;</li>
-            <li>Se passares ou parares numa curva, lanças o dado da curva;</li>
-            <li>Se parares numa casa de evento, tiras uma carta;</li>
-            <li>Passa a vez ao piloto seguinte.</li>
-        </ol>
-        <h3>Curvas (Casa Vermelha):</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Dado da curva</th>
-                    <th scope="col">Resultado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Despiste: paras e recuas 2 casas</td>
-                </tr>
-                <tr>
-                    <td>2 a 5</td>
-                    <td>Fazes a curva e continuas</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Curva Perfeita: não lanças mais dados de curva neste turno</td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>Evento (Casa Amarela):</h3>
-        <p>Só conta se parares na casa evento.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Evento</th>
-                    <th scope="col">Resultado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Vácuo</td>
-                    <td>Avança 3 casas</td>
-                </tr>
-                <tr>
-                    <td>Foto de revista</td>
-                    <td>Nada acontece</td>
-                </tr>
-                <tr>
-                    <td>Poeira na pista</td>
-                    <td>Recua 1 casa</td>
-                </tr>
-                <tr>
-                    <td>Óleo na pista</td>
-                    <td>Recua 2 casas</td>
-                </tr>
-                <tr>
-                    <td>Travagem brusca</td>
-                    <td>Recua 3 casas</td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>Guardar e Classificação:</h3>
-        <p>A corrida fica guardada se recarregares a página</p>
-        <p>As vitórias ficam registadas na Classificação</p>
-        <form method="dialog">
-            <button type="submit" class="btn-fechar">Fechar</button>
-        </form>   
+        <div class="janela-conteudo">
+            <h2>Regras</h2>
+            <h3>Objetivo:</h3>
+            <p>Jogo de 2 a 6 pilotos. Ganha quem cruzar primeiro a meta no fim da 3ª volta.</p>
+            <h3>O teu turno:</h3>
+            <ol>
+                <li>Lança o dado;</li>
+                <li>A tua mota avança esse número de casas;</li>
+                <li>Se passares ou parares numa curva, lanças o dado da curva;</li>
+                <li>Se parares numa casa de evento, tiras uma carta;</li>
+                <li>Passa a vez ao piloto seguinte.</li>
+            </ol>
+            <h3>Curvas (Casa Vermelha):</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Dado da curva</th>
+                        <th scope="col">Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Despiste: paras e recuas 2 casas</td>
+                    </tr>
+                    <tr>
+                        <td>2 a 5</td>
+                        <td>Fazes a curva e continuas</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Curva Perfeita: não lanças mais dados de curva neste turno</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Evento (Casa Amarela):</h3>
+            <p>Só conta se parares na casa evento.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Evento</th>
+                        <th scope="col">Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vácuo</td>
+                        <td>Avança 3 casas</td>
+                    </tr>
+                    <tr>
+                        <td>Foto de revista</td>
+                        <td>Nada acontece</td>
+                    </tr>
+                    <tr>
+                        <td>Poeira na pista</td>
+                        <td>Recua 1 casa</td>
+                    </tr>
+                    <tr>
+                        <td>Óleo na pista</td>
+                        <td>Recua 2 casas</td>
+                    </tr>
+                    <tr>
+                        <td>Travagem brusca</td>
+                        <td>Recua 3 casas</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Guardar e Classificação:</h3>
+            <p>A corrida fica guardada se recarregares a página</p>
+            <p>As vitórias ficam registadas na Classificação</p>
+            <form method="dialog">
+                <button type="submit" class="btn-fechar botao">Fechar</button>
+            </form> 
+        </div>  
     </dialog>
     <dialog id="opcoes">
-        <h2>OPÇÕES</h2>
-        <button id="btn-limpar-classificacao" type="button">Limpar classificação</button>
-        <p id="mensagem-opcoes" aria-live="polite"></p>
-        <form method="dialog">
-            <button type="submit" class="btn-fechar">Fechar</button>
-        </form>
+        <div class="janela-conteudo">
+            <h2>Opções</h2>
+            <button id="btn-limpar-classificacao" type="button" class="botao">Limpar classificação</button>
+            <p id="mensagem-opcoes" aria-live="polite"></p>
+            <form method="dialog">
+                <button type="submit" class="btn-fechar botao">Fechar</button>
+            </form>
+        </div>
     </dialog>
     <dialog id="vitoria">
-        <h2>VENCEDOR</h2>
-        <p id="texto-vitoria"></p>
-        <form method="dialog">
-            <button type="submit" class="btn-fechar">Voltar ao Menu</button>
-        </form>
+        <div class="janela-conteudo">
+            <h2>Vencedor</h2>
+            <p id="texto-vitoria"></p>
+            <form method="dialog">
+                <button type="submit" class="btn-fechar botao">Voltar ao Menu</button>
+            </form>
+        </div>
     </dialog>
 </body>
 </html>

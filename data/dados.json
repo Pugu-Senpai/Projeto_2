@@ -25,10 +25,18 @@
     { "numero": 13, "tipo": "E",    "x": 21.6, "y": 34.7 },
     { "numero": 14, "tipo": "B",    "x": 18.9, "y": 45.9 },
     { "numero": 15, "tipo": "B",    "x": 16.2, "y": 57.1 },
-    { "numero": 16, "tipo": "E",    "x": 13.5, "y": 68.2 },
-    { "numero": 17, "tipo": "B",    "x": 11.5, "y": 79.4 },
+    { "numero": 16, "tipo": "B",    "x": 13.5, "y": 68.2 },
+    { "numero": 17, "tipo": "E",    "x": 11.5, "y": 79.4 },
     { "numero": 18, "tipo": "C",    "x": 16.2, "y": 89.2 },
     { "numero": 19, "tipo": "E",    "x": 27.3, "y": 89.2 },
     { "numero": 20, "tipo": "B",    "x": 38.6, "y": 89.2 }
+    ],
+
+    "eventos": [
+        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3},
+        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0},
+        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1},
+        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2},
+        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3}
     ]
 }

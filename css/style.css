@@ -43,6 +43,7 @@ body {
 
 [hidden] {display: none !important;}
 
+/* TÍTULOS */
 h1 {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
@@ -51,6 +52,12 @@ h1 {
 
 h2 {
   font-family: "Kaushan Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3 {
+  font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -68,13 +75,16 @@ h2 {
     white-space: nowrap;
 }
 
-/* SEÇÃO MENU INICIAL */
-#ecra-inicial {
+/* IMAGEM FUNDO */
+
+#ecra-inicial, #ecra-configuracao {
     background-image: url(../assets/img/background.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover; 
 }
+
+/* SEÇÃO MENU INICIAL */
 
 .fundo-jogo {
     background-image: url(../assets/img/fundo_jogo.jpg);
@@ -102,6 +112,7 @@ h2 {
     margin-bottom: 2.5rem;
 }
 
+/* BOTÕES */
 .inicial-botao {
     border-width: 0.3rem;
     border-style: solid;
@@ -137,6 +148,7 @@ h2 {
     outline-style: groove;     
 }
 
+/* SEÇÃO ECRÃ JOGO */
 #ecra-jogo {
     display: grid;
     grid-template-columns: 1fr 15rem;
@@ -151,6 +163,7 @@ h2 {
 #ecra-jogo > main {grid-area: pista; }
 #ecra-jogo > aside {grid-area: menu; }
 
+/* PISTA */
 #pista {
     position: relative;
     max-width: 70%;
@@ -159,6 +172,7 @@ h2 {
     background-color: var(--verde);
 }
 
+/* CASAS */
 .casa {
     position: absolute;
     width: 7%;
@@ -186,6 +200,7 @@ h2 {
     background-color: var(--creme-claro);
 }
 
+/* PEÇAS */
 .peca {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -197,4 +212,139 @@ h2 {
     display: grid;
     place-items: center;
     font-size: 0.8rem;
+}
+
+/* JANELAS & BOTÕES */
+
+/* JANELA */
+dialog {
+    padding: 0;
+    background-color: var(--creme-claro);
+    color: var(--tinta-preta);
+    border-style: solid;
+    border-color: var(--tinta-preta);
+    border-radius: 1rem;
+    border-width: 0.2rem;
+    width: 90vw;
+    max-width: 40rem;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.janela-conteudo {
+    padding: 1rem;
+}
+
+dialog::backdrop {
+    background-color: rgb(31 29 25 / 0.7);
+}
+
+dialog h2 {
+    text-align: center;
+    color: var(--vermelho-escuro);
+    margin-top: 0;
+    font-size: 3rem;
+}
+
+dialog h3 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+}
+
+dialog table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+dialog th, dialog td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--areia);
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+}
+
+dialog th {
+    background-color: var(--asfalto);
+    color: var(--creme-claro);
+}
+
+dialog tbody tr:nth-child(even) {
+    background-color: var(--creme-papel);
+}
+
+dialog form {
+    text-align: right;
+}
+
+/* BOTÕES */
+.botao {
+    border-width: 0.2rem;
+    border-style: solid;
+    border-radius: 1rem;
+    border-color: var(--tinta-preta);
+    background-color: var(--vermelho);
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--tinta-preta);
+    padding: 0.25rem 1rem;
+    font-family: inherit;
+    min-width: 15%;
+}
+
+.botao:disabled {
+    background-color: var(--vermelho-escuro);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.botao:hover:not(:disabled) {
+    background-color: var(--vermelho-escuro);
+    border-color: var(--areia);
+    color: var(--creme-claro);
+    cursor: pointer;
+}
+
+.botao:active {
+    transform: scale(0.975);
+}
+
+.botao:focus-visible:not(:disabled) {
+    background-color: var(--vermelho-escuro);
+    border-color: var(--areia);
+    color: var(--creme-claro);
+    outline-offset: 0.1rem;
+    outline-color: var(--mostarda);
+    outline-width: 0.3rem; 
+    outline-style: groove;     
+}
+
+/* SEÇÃO ECRÃ CONFIGURAÇÃO */
+ 
+/* CARTÃO */
+#ecra-configuracao {
+    min-height: 100vh;
+    padding: 1rem 1rem;
+}
+
+#ecra-configuracao h2 {
+    text-align: center;
+    color: var(--vermelho-escuro);
+    font-size: 2rem;
+}
+
+#dados-jogador {
+    background-color: var(--creme-claro);
+    border-style: solid;
+    border-color: var(--tinta-preta);
+    border-radius: 1rem;
+    border-width: 0.2rem;   
+    max-width: 40rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-inline: auto;
+    padding: 1rem 1rem;
+    gap: 1rem
 }
