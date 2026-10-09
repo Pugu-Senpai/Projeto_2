@@ -1,5 +1,5 @@
 import { trocarEcras } from "./ecras.js";
-import { abrirJanela } from "./janelas.js";
+import { abrirJanela, mostrarAviso } from "./janelas.js";
 import { criarListaJogadores, lerJogadores, validarJogadores } from "./configuracao.js";
 import { carregarDados } from "./dados.js";
 import { iniciarCorrida, obterPilotos, obterPilotoDaVez, passarTurno, 
@@ -16,9 +16,15 @@ import { tirarCarta } from "./cartas.js";
 const dados = await carregarDados();
 const CASA_DESPISTE = 2;
 const RECUAR = 1;
+const PAUSA_ANTES_AVISO = 800;
 const PAUSA_MOVIMENTO = 300;
-const PAUSA_LEITURA = 1500;
 const PAUSA_DADO = 900;
+const VEZES_DADO = 10;
+const PAUSA_INICIAL_DADO = 30;
+const AUMENTO_PAUSA = 20;
+const ANGULO_LADO = 12;
+const TROCAR_LADO = -1;
+const MOVIMENTO_REDUZIDO = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const btnIniciar = document.getElementById("btn-iniciar-jogo");
 const btnsJanela = document.querySelectorAll("[data-janela]");
@@ -35,7 +41,7 @@ const vezJogador = document.getElementById("vez-jogador");
 const textoVolta = document.getElementById("volta");
 const textoVitoria = document.getElementById("texto-vitoria");
 const janelaVitoria = document.getElementById("vitoria");
-const janelaOpçoes = document.getElementById("opcoes");
+const janelaOpcoes = document.getElementById("opcoes");
 const mensagem = document.getElementById("mensagem");
 const mensagemOpcoes = document.getElementById("mensagem-opcoes");
 
@@ -76,6 +82,23 @@ async function recuarCasas(casas) {
         desenharPecas(obterPilotos(), dados.casas);
         await esperar(PAUSA_MOVIMENTO);        
     }
+}
+
+async function animarDado(resultadoFinalDado) {
+    let pausa = PAUSA_INICIAL_DADO;
+    let lado = 1;
+    const angulo = MOVIMENTO_REDUZIDO ? 0 : ANGULO_LADO;
+    for (let i = 0; i < VEZES_DADO; i++) {
+        const aleatorioDado = lancarDado();
+        numDado.textContent = aleatorioDado;
+        numDado.style.transition = `transform ${pausa}ms`;
+        numDado.style.transform = `rotate(${angulo * lado}deg)`;
+        lado = lado * TROCAR_LADO;
+        await esperar(pausa);
+        pausa += AUMENTO_PAUSA;
+    }
+    numDado.style.transform = "rotate(0deg)";
+    numDado.textContent = resultadoFinalDado;
 }
 
 btnIniciar.addEventListener("click", () => {
@@ -122,7 +145,7 @@ btnDado.addEventListener("click", async () => {
     mostrarMensagem("");
     const resultadoDado = lancarDado();
     let curvaPerfeita = false;
-    numDado.textContent = resultadoDado;
+    await animarDado(resultadoDado);
     await esperar(PAUSA_DADO);
     for (let i = 1; i <= resultadoDado; i++) {
         avancarPilotoDaVez(dados.casas.length);
@@ -132,29 +155,32 @@ btnDado.addEventListener("click", async () => {
         }
         //CURVA EVENTO
         if (casaAtual().tipo === "C" && !curvaPerfeita) {
+            await esperar(PAUSA_ANTES_AVISO);
             const dadoCurva = lancarDado();
             //DESPISTE
             if (dadoCurva === 1) {
                 mostrarMensagem(`${obterPilotoDaVez().nome} teve um DESPISTE!`);
-                await esperar(PAUSA_LEITURA)
+                await mostrarAviso(dados.curvas.despiste);
                 await recuarCasas(CASA_DESPISTE);
                 break;
             //SUCESSO
             } else if (dadoCurva === 6) {
-                mostrarMensagem(`${obterPilotoDaVez().nome} fez CURVA PERFEITA!`); 
+                mostrarMensagem(`${obterPilotoDaVez().nome} fez CURVA PERFEITA!`);
+                await mostrarAviso(dados.curvas.perfeito); 
                 curvaPerfeita = true; 
             } else {
                 mostrarMensagem(`${obterPilotoDaVez().nome} fez a CURVA!`);
-                await esperar(PAUSA_DADO);
+                await mostrarAviso(dados.curvas.normal);
             }
         }
         await esperar(PAUSA_MOVIMENTO);
     }
     //CASA EVENTO
     if (casaAtual().tipo === "E") {
+        await esperar(PAUSA_ANTES_AVISO);
         const carta = tirarCarta(dados.eventos);
         mostrarMensagem(`${carta.nome} | ${carta.descricao}`);
-        await esperar(PAUSA_LEITURA);
+        await mostrarAviso(carta);
         if (carta.casas > 0) {
             for (let i = 0; i < carta.casas; i++) {
                 avancarPilotoDaVez(dados.casas.length);
@@ -170,7 +196,7 @@ btnDado.addEventListener("click", async () => {
     }  
     desenharPosicoes(obterPilotos(), dados.casas.length);
 
-    //VENCEER CORRIDA
+    //VENCER CORRIDA
     if (pilotoDaVezVenceu()) {
         const vencedor = obterPilotoDaVez();        
         textoVitoria.textContent = vencedor.nome;
@@ -205,12 +231,12 @@ btnSair.addEventListener("click", () => {
 
 btnLimparClassificacao.addEventListener("click", () => {
     if (confirm("Pretende eliminar a classificação existente?")) {
-        apagarVitorias()
-        mensagemOpcoes.textContent = "Lista classificações eliminada!"
+        apagarVitorias();
+        mensagemOpcoes.textContent = "Lista classificações eliminada!";
     }
 });
 
-janelaOpçoes.addEventListener("close", () => {
+janelaOpcoes.addEventListener("close", () => {
     mensagemOpcoes.textContent = "";
 });
 
