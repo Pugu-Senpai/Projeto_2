@@ -33,10 +33,16 @@
     ],
 
     "eventos": [
-        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3},
-        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0},
-        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1},
-        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2},
-        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3}
-    ]
+        {"nome": "Vácuo", "descricao": "Avança 3 casas", "casas": 3, "imagem": "./assets/img/cartas/eventos/evento_1_vacuo.jpg" },
+        {"nome": "Foto de revista", "descricao": "Nada acontece", "casas": 0, "imagem": "./assets/img/cartas/eventos/evento_2_foto_revista.jpg" },
+        {"nome": "Poeira na pista", "descricao": "Recua 1 casa", "casas": -1, "imagem": "./assets/img/cartas/eventos/evento_3_poeira_pista.jpg" },
+        {"nome": "Óleo na pista", "descricao": "Recua 2 casas", "casas": -2, "imagem": "./assets/img/cartas/eventos/evento_4_oleo_pista.jpg" },
+        {"nome": "Travagem brusca", "descricao": "Recua 3 casas", "casas": -3, "imagem": "./assets/img/cartas/eventos/evento_5_travagem_brusca.jpg" }
+    ],
+
+    "curvas": {
+        "normal": { "nome": "Curva Normal", "descricao": "Continua o movimento", "imagem": "./assets/img/cartas/curvas/curva_1_normal.jpg" },
+        "perfeito": { "nome": "Curva Perfeita", "descricao": "Continua e não precisa de lançar dado nas próximas curvas desse turno", "imagem": "./assets/img/cartas/curvas/curva_2_perfeito.jpg" },
+        "despiste": { "nome": "Despiste", "descricao": "Para na curva e recua 2 casas a partir da curva", "imagem": "./assets/img/cartas/curvas/curva_3_despiste.jpg" }
+    }
 }

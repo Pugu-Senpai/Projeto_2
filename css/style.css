@@ -541,6 +541,43 @@ select:focus-visible, input[type="radio"]:focus-visible + label {
     display: none;
 }
 
+/* JANELA AVISO EVENTO/CURVA */
+#aviso {
+    max-width: 26rem;
+}
+
+#aviso .janela-conteudo {
+    text-align: center;
+}
+
+#aviso h2 {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+#aviso img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--carvao);
+    border-radius: 15px;
+}
+
+#aviso p {
+    font-size: 1.2rem;
+}
+
+#aviso .btn-fechar {
+    min-width: 2rem;
+    padding: 0;
+    aspect-ratio: 1;
+    font-size: 1rem;
+    border-radius: 50%;
+}
+
 /* ANIMAÇÃO PULSE */
 .pulsar {
     font-size: 8rem;
@@ -576,5 +613,5 @@ to { color: var(--vermelho); }
 @media (prefers-reduced-motion: reduce) {
     .pulsar {
         animation: none;
-    }
+    }     
 }
